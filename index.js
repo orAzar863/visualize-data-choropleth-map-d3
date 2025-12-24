@@ -22,6 +22,9 @@ function App() {
             {countyData && educationData && (
                 <ChoroplethMap countyData={countyData} educationData={educationData} />
             )}
+            <footer style={{marginTop: 32, fontSize: '14px', color: '#888', textAlign: 'center'}}>
+                © {new Date().getFullYear()} Or. All rights reserved.
+            </footer>
         </div>
     );
 }
@@ -29,8 +32,14 @@ function App() {
 
 function ChoroplethMap({ countyData, educationData }) {
     const width = 960, height = 600;
-    // Color palette for the map
-    const colorRange = ["#edf8fb", "#b2e2e2", "#66c2a4", "#2ca25f", "#006d2c"];
+    // Unique blue color palette for the map
+    const colorRange = [
+        "#e3f0ff", // very light blue
+        "#a3cfff", // light blue
+        "#5fa8e9", // medium blue
+        "#2176ae", // strong blue
+        "#14396d"  // deep blue
+    ];
     // Memoize education values and min/max
     const eduValues = React.useMemo(() => educationData.map(d => d.bachelorsOrHigher), [educationData]);
     const minEdu = React.useMemo(() => Math.min(...eduValues), [eduValues]);
